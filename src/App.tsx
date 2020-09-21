@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import Link from "./Link";
+
+interface Props {}
+
+const App: React.FC<Props> = (props: Props) => {
+  // hmm would prefer to init this to null but TS doesnt like that
+  const [token, setToken] = React.useState("");
+
+  const generateToken = async () => {
+    const response = await fetch("/api/create_link_token", {
+      method: "POST"
+    });
+    const data = await response.json();
+    setToken(data.link_token);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={generateToken}>generate token then open Link</button>
+      {token != "" && <Link token={token} />}
+    </>
   );
-}
+};
+
+App.displayName = "App";
 
 export default App;
