@@ -1,8 +1,6 @@
 import React from "react";
 
-import "./App.css";
-
-import Link from "./Link";
+import LinkButton from "./LinkButton";
 
 interface Props {}
 
@@ -17,13 +15,14 @@ const App: React.FC<Props> = (props: Props) => {
     setToken(data.link_token);
   };
 
-  return (
-    <>
-      <button onClick={generateToken}>
-        generate token on click and then open Link
-      </button>
-      {token != null && <Link token={token} />}
-    </>
+  React.useEffect(() => {
+    generateToken();
+  }, []);
+
+  return token == null ? (
+    <div className="loader"></div>
+  ) : (
+    <LinkButton token={token} />
   );
 };
 
