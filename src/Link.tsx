@@ -3,6 +3,7 @@ import { usePlaidLink } from "react-plaid-link";
 
 interface Props {
   token: string;
+  receivedRedirectUri: string | null;
 }
 
 const Link: React.FC<Props> = (props: Props) => {
@@ -11,13 +12,20 @@ const Link: React.FC<Props> = (props: Props) => {
     console.log("public_token", public_token);
   }, []);
 
-  const config: Parameters<typeof usePlaidLink>[0] = {
+  let config: Parameters<typeof usePlaidLink>[0] = {
     token: props.token,
     onSuccess,
     clientName: "hello world",
     env: "sandbox",
-    product: ["auth"]
+    product: ["auth"],
   };
+
+  if (props.receivedRedirectUri != null) {
+    config = {
+      ...config,
+      receivedRedirectUri: props.receivedRedirectUri
+    };
+  }
 
   const { open, ready, error } = usePlaidLink(config);
 
