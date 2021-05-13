@@ -10,6 +10,7 @@ ReactDOM.render(
     <App />
     <br />
     <App2 />
+    <div className={'reallyTallThing'}></div>
   </React.StrictMode>,
   document.getElementById("root")
 );
