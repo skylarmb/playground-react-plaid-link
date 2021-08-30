@@ -8,29 +8,33 @@ import {
 const App: React.FC = () => {
   const isOauthRedirect = document.location.href.includes("oauth_state_id");
 
-  const [token, setToken] = React.useState<string | null>(null);
+  const [token, setToken] = React.useState<string | null>("link-sandbox-192d620d-3f24-44f9-b677-a5f0a262a256");
 
-  const generateToken = async () => {
-    const response = await fetch("/api/create_link_token", {
-      method: "POST",
-    });
-    const data = await response.json();
-    setToken(data.link_token);
-    sessionStorage.setItem("link_token", data.link_token);
-  };
+  // const generateToken = async () => {
+  //   const response = await fetch("/api/create_link_token", {
+  //     method: "POST",
+  //   });
+  //   const data = await response.json();
+  //   setToken(data.link_token);
+  //   sessionStorage.setItem("link_token", data.link_token);
+  // };
 
-  React.useEffect(() => {
-    if (isOauthRedirect) {
-      setToken(sessionStorage.getItem("link_token"));
-    } else {
-      generateToken();
-    }
-  }, [isOauthRedirect]);
+  // React.useEffect(() => {
+  //   generateToken();
+  //   if (isOauthRedirect) {
+  //     setToken(sessionStorage.getItem("link_token"));
+  //   } else {
+  //     generateToken();
+  //   }
+  // }, [isOauthRedirect]);
 
   return token == null ? (
     <div className="loader"></div>
   ) : (
-    <LinkButton token={token} isOauthRedirect={isOauthRedirect} />
+    <>
+      <LinkButton token={token} isOauthRedirect={isOauthRedirect} />
+      {isOauthRedirect.toString()}
+    </>
   );
 };
 
