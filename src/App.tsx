@@ -8,32 +8,42 @@ import {
 const App: React.FC = () => {
   const isOauthRedirect = document.location.href.includes("oauth_state_id");
 
-  const [token, setToken] = React.useState<string | null>("link-sandbox-192d620d-3f24-44f9-b677-a5f0a262a256");
+  const [token, setToken] = React.useState<string | null>(null);
 
-  // const generateToken = async () => {
-  //   const response = await fetch("/api/create_link_token", {
-  //     method: "POST",
-  //   });
-  //   const data = await response.json();
-  //   setToken(data.link_token);
-  //   sessionStorage.setItem("link_token", data.link_token);
-  // };
+  const generateToken = async () => {
+    // get link_token from API
+    //
+    // const response = await fetch("/api/create_link_token", {
+    //   method: "POST",
+    // });
+    // const data = await response.json();
+    // setToken(data.link_token);
+    // sessionStorage.setItem("link_token", data.link_token);
 
-  // React.useEffect(() => {
-  //   generateToken();
-  //   if (isOauthRedirect) {
-  //     setToken(sessionStorage.getItem("link_token"));
-  //   } else {
-  //     generateToken();
-  //   }
-  // }, [isOauthRedirect]);
+
+    // hardcode a token for easy testing
+    const link_token = 'link-sandbox-192d620d-3f24-44f9-b677-a5f0a262a256';
+    setToken(link_token);
+    sessionStorage.setItem("link_token", link_token);
+  };
+
+  // handle OAuth redirect
+  React.useEffect(() => {
+    generateToken();
+    if (isOauthRedirect) {
+      setToken(sessionStorage.getItem("link_token"));
+    } else {
+      generateToken();
+    }
+  }, [isOauthRedirect]);
 
   return token == null ? (
     <div className="loader"></div>
   ) : (
     <>
       <LinkButton token={token} isOauthRedirect={isOauthRedirect} />
-      {isOauthRedirect.toString()}
+      <br />
+      is OAuth redirect: {isOauthRedirect.toString()}
     </>
   );
 };
