@@ -9,8 +9,7 @@ import {
 } from "react-plaid-link";
 
 const App = () => {
-  // @ts-ignore
-  const [token, setToken] = useState<string | null>();
+  const [token, setToken] = useState<string | null>(null);
   const [inc, setInc] = useState<number>(0);
 
   // generate a link_token when component mounts
@@ -39,9 +38,8 @@ const App = () => {
     console.log(error, metadata);
   }, []);
 
-  // @ts-ignore
   const config: PlaidLinkOptions = {
-    token: token,
+    token,
     onSuccess,
     onEvent,
     onExit,
