@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import App2 from "./App2";
+// import OAuth from './OAuth'
+import HOC from './HOC'
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <br />
     <App2 />
   </React.StrictMode>,
   document.getElementById("root")

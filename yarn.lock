@@ -8716,18 +8716,18 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-plaid-link@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/react-plaid-link/-/react-plaid-link-3.0.0.tgz#c456d6486b5923f920f57e98bbac64ecefaf96bd"
-  integrity sha512-jXL3xYvDOHYQ66cKaWdzU1OcFM6RKW05bbA3CnMcgm6XurKur0n6cWB6JNIn3Z9DDiXiS/UaScnzmGa7GagVKA==
+react-plaid-link@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/react-plaid-link/-/react-plaid-link-3.3.0.tgz#543bc6bdf754ec5e92f80d7bc872969ff4e61683"
+  integrity sha512-OZni8dTn0OBvZLpHgNmvTXCMOZj47QuRRXyhc67lEqqtEVNujC4/J9s6XcoWkG3kdq3oT3P1coAbN8Q0Q/8xuA==
   dependencies:
     prop-types "^15.7.2"
-    react-script-hook "1.1.0"
+    react-script-hook "1.5.0"
 
-react-script-hook@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/react-script-hook/-/react-script-hook-1.1.0.tgz#f88bb74b1c89250d7577e6cd5472f10992190706"
-  integrity sha512-swEdGFIOgG4lfi1gdYzFNV28uKuowzbgEGb8Lwi/yp696BVa6RvvuW4a7FY9mic+SecojVlHMWcllygmAg6EJg==
+react-script-hook@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/react-script-hook/-/react-script-hook-1.5.0.tgz#7d7eb189c92e01cf0a8d1796113947ef8e08eed5"
+  integrity sha512-LzWXi5rxT4xz+zLwCt7nTmMuFyFs04c5m6lHCs8Ps9U8J8zHQNp+E9IcLFSFzkn4WZMiNPt2DQUVeBHLy2Ix0w==
 
 react-scripts@3.4.3:
   version "3.4.3"
