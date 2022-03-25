@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { usePlaidLink } from "react-plaid-link";
 
-import "./App.css";
+import { useLinkPlaidItemLazyQuery } from "./useLinkPlaidItemLazyQuery";
 
-import Link from "./Link";
+export const LinkPlaidItemButton: React.FC = (props) => {
+  const [linkPlaidItem, { data, loading, error }] = useLinkPlaidItemLazyQuery();
 
-interface Props {}
+  const token = data?.getPlaidLinkToken.linkToken ?? null;
+  console.log("got token", token);
 
-const App: React.FC<Props> = (props: Props) => {
-  const [token, setToken] = React.useState<string | null>(null);
+  const { open, ready } = usePlaidLink({
+    token,
+    onEvent: (eventName, metadata) => console.log(eventName, metadata),
+    onLoad: () => console.log("link loaded"),
+    onExit: (error) => console.log(error),
+    onSuccess: () => {},
+  });
 
-  const generateToken = async () => {
-    const response = await fetch("/api/create_link_token", {
-      method: "POST"
-    });
-    const data = await response.json();
-    setToken(data.link_token);
-  };
+  useEffect(() => {
+    if (token && ready) {
+      open();
+    }
+  }, [token, ready, open]);
+
+  if (error) throw error;
 
   return (
-    <>
-      <button onClick={generateToken}>
-        generate token on click and then open Link
-      </button>
-      {token != null && <Link token={token} />}
-    </>
+    <button
+      disabled={loading || Boolean(token && !ready)}
+      onClick={() => linkPlaidItem()}
+    >
+      Add Account
+    </button>
   );
 };
 
-App.displayName = "App";
-
-export default App;
+export default LinkPlaidItemButton;
